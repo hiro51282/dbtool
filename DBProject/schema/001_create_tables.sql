@@ -44,6 +44,7 @@ CREATE TABLE program_java (
     cutoff_id     INT NOT NULL,
     file_path     VARCHAR(512) NOT NULL,
     hash          CHAR(64) NOT NULL,
+    java_name     VARCHAR(255) NOT NULL,
     created_at    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     INDEX idx_program_java_program (program_id),
@@ -81,6 +82,7 @@ CREATE TABLE copy_java (
     cutoff_id     INT NOT NULL,
     file_path     VARCHAR(512) NOT NULL,
     hash          CHAR(64) NOT NULL,
+    java_name     VARCHAR(255) NOT NULL,
     created_at    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     INDEX idx_copy_java_copy (copy_id),
