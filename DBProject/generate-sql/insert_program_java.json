@@ -1,0 +1,14 @@
+{
+    "input_directory": "C:/Users/rr/Desktop/ddproject-db/DBProject/data/cobol_raw",
+    "table_name": "program_java",
+    "rename_param_file": "C:/Users/rr/Desktop/ddproject-db/DBProject/generate-sql/cobol_to_cobol_param.txt",
+
+    "columns": {
+        "program_id": "program_id",
+        "cutoff_id": "cutoff_id",
+        "file_path": "file_path",
+        "hash": "hash",
+        "java_name": "program_name"
+
+    }
+}
