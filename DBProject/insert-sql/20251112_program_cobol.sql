@@ -1,0 +1,3 @@
+﻿INSERT INTO program_cobol (program_name, cutoff_id, file_path, hash) VALUES ('AAA', 1, 'C:/Users/rr/Desktop/ddproject-db/DBProject/data/cobol_raw/programs/AAA.cbl', 'cf00d9baca436424ae3ba58d3bb3ce612256e8a7246bb7dcbd7bfab265c98b00');
+INSERT INTO program_cobol (program_name, cutoff_id, file_path, hash) VALUES ('BBB', 1, 'C:/Users/rr/Desktop/ddproject-db/DBProject/data/cobol_raw/programs/BBB.cbl', 'cf00d9baca436424ae3ba58d3bb3ce612256e8a7246bb7dcbd7bfab265c98b00');
+INSERT INTO program_cobol (program_name, cutoff_id, file_path, hash) VALUES ('CCC', 1, 'C:/Users/rr/Desktop/ddproject-db/DBProject/data/cobol_raw/programs/CCC.cbl', 'cf00d9baca436424ae3ba58d3bb3ce612256e8a7246bb7dcbd7bfab265c98b00');

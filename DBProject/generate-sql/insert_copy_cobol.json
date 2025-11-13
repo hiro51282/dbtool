@@ -1,0 +1,11 @@
+{
+    "input_directory": "C:/Users/rr/Desktop/ddproject-db/DBProject/data/cobol_raw/copy",
+    "table_name": "copy_cobol",
+
+    "columns": {
+        "cutoff_id": "cutoff_id",
+        "file_path": "file_path",
+        "hash": "hash",
+        "copy_name": "program_name"
+    }
+}

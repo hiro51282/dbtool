@@ -1,0 +1,11 @@
+{
+    "input_directory": "C:/Users/rr/Desktop/ddproject-db/DBProject/data/cobol_raw/programs",
+    "table_name": "program_cobol",
+
+    "columns": {
+        "cutoff_id": "cutoff_id",
+        "file_path": "file_path",
+        "hash": "hash",
+        "program_name": "program_name"
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "input_directory": "C:/Users/rr/Desktop/ddproject-db/DBProject/data/java_raw/copy",
+    "table_name": "copy_java",
+
+    "columns": {
+        "copy_id": "program_id",
+        "cutoff_id": "cutoff_id",
+        "file_path": "file_path",
+        "hash": "hash",
+        "java_name": "program_name"
+
+    }
+}

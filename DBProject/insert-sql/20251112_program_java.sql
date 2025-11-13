@@ -1,0 +1,3 @@
+﻿INSERT INTO program_java (program_id, java_name, file_path, cutoff_id, hash) VALUES (-1, 'Aaa', 'C:/Users/rr/Desktop/ddproject-db/DBProject/data/java_raw/programs/Aaa.java', 1, 'cf00d9baca436424ae3ba58d3bb3ce612256e8a7246bb7dcbd7bfab265c98b00');
+INSERT INTO program_java (program_id, java_name, file_path, cutoff_id, hash) VALUES (-1, 'Bbb', 'C:/Users/rr/Desktop/ddproject-db/DBProject/data/java_raw/programs/Bbb.java', 1, 'cf00d9baca436424ae3ba58d3bb3ce612256e8a7246bb7dcbd7bfab265c98b00');
+INSERT INTO program_java (program_id, java_name, file_path, cutoff_id, hash) VALUES (-1, 'Ccc', 'C:/Users/rr/Desktop/ddproject-db/DBProject/data/java_raw/programs/Ccc.java', 1, 'cf00d9baca436424ae3ba58d3bb3ce612256e8a7246bb7dcbd7bfab265c98b00');
