@@ -42,6 +42,7 @@ CREATE TABLE program_java (
     id            INT AUTO_INCREMENT PRIMARY KEY,
     program_id    INT NOT NULL,        -- program_cobol.id
     cutoff_id     INT NOT NULL,
+    java_version  VARCHAR(64) NOT NULL,
     file_path     VARCHAR(512) NOT NULL,
     hash          CHAR(64) NOT NULL,
     java_name     VARCHAR(255) NOT NULL,
@@ -80,6 +81,7 @@ CREATE TABLE copy_java (
     id            INT AUTO_INCREMENT PRIMARY KEY,
     copy_id       INT NOT NULL,      -- copy_cobol.id
     cutoff_id     INT NOT NULL,
+    java_version  VARCHAR(64) NOT NULL,
     file_path     VARCHAR(512) NOT NULL,
     hash          CHAR(64) NOT NULL,
     java_name     VARCHAR(255) NOT NULL,
@@ -150,6 +152,30 @@ CREATE TABLE copy_resource (
 ) ENGINE=InnoDB;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- =========================================================
+-- change_name_copy（changeName: コピー句用）
+-- =========================================================
+DROP TABLE IF EXISTS change_name_copy;
+CREATE TABLE change_name_copy (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cutoff_id INT NOT NULL,
+    cobol_name VARCHAR(255) NOT NULL,
+    java_name  VARCHAR(255) NOT NULL,
+    FOREIGN KEY (cutoff_id) REFERENCES cutoff(id)
+);
+
+-- =========================================================
+-- change_name_program（changeName: 処理部用）
+-- =========================================================
+DROP TABLE IF EXISTS change_name_program;
+CREATE TABLE change_name_program (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cutoff_id INT NOT NULL,
+    cobol_name VARCHAR(255) NOT NULL,
+    java_name  VARCHAR(255) NOT NULL,
+    FOREIGN KEY (cutoff_id) REFERENCES cutoff(id)
+);
 
 -- =========================================================
 -- END OF FILE

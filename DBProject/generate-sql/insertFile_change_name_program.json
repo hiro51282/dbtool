@@ -1,0 +1,11 @@
+{
+    "input_file": "C:/Users/rr/Desktop/ddproject-db/DBProject/data/chnagename_program.tsv",
+    "table_name": "change_name_program",
+    "cutoff_id": 1,
+    "delimiter": "\t",
+    "columns": {
+        "cutoff_id": "cutoff_id",
+        "cobol_name": 0,
+        "java_name": 1
+    }
+}

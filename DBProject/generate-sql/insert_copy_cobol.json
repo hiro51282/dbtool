@@ -2,6 +2,7 @@
     "input_directory": "C:/Users/rr/Desktop/ddproject-db/DBProject/data/cobol_raw/copy",
     "table_name": "copy_cobol",
 
+    "cutoff_id": 1,
     "columns": {
         "cutoff_id": "cutoff_id",
         "file_path": "file_path",

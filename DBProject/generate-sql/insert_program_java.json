@@ -2,9 +2,12 @@
     "input_directory": "C:/Users/rr/Desktop/ddproject-db/DBProject/data/java_raw/programs",
     "table_name": "program_java",
 
+    "cutoff_id": 1,
+    "java_version": "10.99",
     "columns": {
         "program_id": "program_id",
         "cutoff_id": "cutoff_id",
+        "java_version": "java_version",
         "file_path": "file_path",
         "hash": "hash",
         "java_name": "program_name"

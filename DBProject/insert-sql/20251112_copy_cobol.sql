@@ -1,0 +1,3 @@
+﻿INSERT INTO copy_cobol (copy_name, cutoff_id, file_path, hash) VALUES ('XXX', 1, 'C:/Users/rr/Desktop/ddproject-db/DBProject/data/cobol_raw/copy/XXX.cbl', '2b920766b4554bbb541b8ed64e17543809e1148343f2abd71861fca4d0c5ccc9');
+INSERT INTO copy_cobol (copy_name, cutoff_id, file_path, hash) VALUES ('YYY', 1, 'C:/Users/rr/Desktop/ddproject-db/DBProject/data/cobol_raw/copy/YYY.cbl', '2b920766b4554bbb541b8ed64e17543809e1148343f2abd71861fca4d0c5ccc9');
+INSERT INTO copy_cobol (copy_name, cutoff_id, file_path, hash) VALUES ('ZZZ', 1, 'C:/Users/rr/Desktop/ddproject-db/DBProject/data/cobol_raw/copy/ZZZ.cbl', '2b920766b4554bbb541b8ed64e17543809e1148343f2abd71861fca4d0c5ccc9');

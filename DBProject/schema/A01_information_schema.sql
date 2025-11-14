@@ -1,4 +1,5 @@
 SELECT 
+    -- *
     TABLE_NAME,
     COLUMN_NAME,
     REFERENCED_TABLE_NAME,

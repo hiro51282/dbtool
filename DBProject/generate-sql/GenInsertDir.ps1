@@ -1,10 +1,7 @@
 param(
-    [int]$cutoff_id,
     [string]$jsonFile,
     [string]$outputFile
 )
-$cutoff_id = 1
-
 # $jsonFile = 'DBProject\generate-sql\insert_copy_cobol.json'
 # $outputFile = 'DBProject\insert-sql\20251112_copy_cobol.sql'
 
@@ -42,7 +39,11 @@ function Get-ForeignKeyMap {
 
 
     $query = @"
-SELECT TABLE_NAME, COLUMN_NAME, REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME
+SELECT 
+    TABLE_NAME, 
+    COLUMN_NAME, 
+    REFERENCED_TABLE_NAME, 
+    REFERENCED_COLUMN_NAME 
 FROM information_schema.KEY_COLUMN_USAGE
 WHERE TABLE_SCHEMA = '$database'
   AND REFERENCED_TABLE_NAME IS NOT NULL;
@@ -55,10 +56,16 @@ WHERE TABLE_SCHEMA = '$database'
             $table = $parts[0]
             $col = $parts[1]
             $reftb = $parts[2]
+            $refcname = $parts[3]
             if (-not $map.ContainsKey($table)) {
-                $map[$table] = @{}
+                $map[$table] = @()
             }
-            $map[$table][$col] = $reftb
+            $map[$table] += [PSCustomObject]@{
+                COLUMN_NAME            = $col
+                REFERENCED_TABLE_NAME  = $reftb
+                REFERENCED_COLUMN_NAME = $refcname
+            }
+            # $map[$table][$col] = $reftb
         }
     }
     return $map
@@ -66,6 +73,7 @@ WHERE TABLE_SCHEMA = '$database'
 
 # ==========================================
 # 関数：参照先のIDを解決する（自動判定）
+#TODO:効率悪し。改善の余地あり、いっそのこといったんハードコーディングしてから改良してもよい
 # ==========================================
 function Resolve-ForeignId($refTable, $searchName) {
     $colName = ""
@@ -111,35 +119,39 @@ foreach ($file in Get-ChildItem $inputDir -Recurse) {
     $values = @{}
     foreach ($col in $colMap.Keys) {
         switch ($colMap[$col]) {
-            "cutoff_id" { $values[$col] = $cutoff_id }
             "hash" { $values[$col] = $hash }
             "file_path" { $values[$col] = $path }
             "program_name" { $values[$col] = $name }
             "copy_name" { $values[$col] = $name }
-            default { $values[$col] = "NULL" }
+            default {
+                $definedval = $json.PSObject.Properties | Where-Object { $_.Name -eq $col }
+                if ($definedval) {
+                    $values[$col] = $definedval.Value
+                }
+                else {
+                    $values[$col] = "NULL" 
+                }
+            }
         }
     }
-    # 外部キーごとの処理方針
-    $fkPolicy = @{
-        "cutoff_id"  = { param($refTable, $name) return $cutoff_id }
-        "created_by" = { param($refTable, $name) return "system" }
-    }
+    # 外部キーのスキップリスト
+    $skipcol = @("cutoff_id")
 
     # 外部キー解決
     if ($fkMap.ContainsKey($table)) {
-        foreach ($fkCol in $fkMap[$table].Keys) {
-            $refTable = $fkMap[$table][$fkCol]
-            if ($fkPolicy.ContainsKey($fkCol)) {
-                $resolvedId = & $fkPolicy[$fkCol] $refTable $name
+        # TODO：ハードコーディングしたほうがいいかも
+        # javaテーブルに紐づくCOBOLIDの取得
+        $fkMap[$table]
+        #TODO$tableをSelectですべて取得するとか？
+        foreach ($fkCol in $fkMap[$table]) {
+            $refTable = $fkMap[$table].REFERENCED_TABLE_NAME
+            if ($skipcol.Contains($fkCol.COLUMN_NAME)) {
+                continue
             }
-            else {
-                $resolvedId = Resolve-ForeignId $refTable $name
-            }
-            $values[$fkCol] = $resolvedId
+            $values[$fkCol.COLUMN_NAME] = -1
+            # $values[$fkCol.COLUMN_NAME] = Resolve-ForeignId $refTable $name
         }
     }
-
-
 
     $cols = ($values.Keys -join ", ")
     $vals = ($values.Values | ForEach-Object {
@@ -152,4 +164,4 @@ foreach ($file in Get-ChildItem $inputDir -Recurse) {
 }
 
 $insertLines | Out-File $outputFile -Encoding UTF8
-Write-Host "? $outputFile に INSERT文を出力しました"
+Write-Host " $outputFile に INSERT文を出力しました"
