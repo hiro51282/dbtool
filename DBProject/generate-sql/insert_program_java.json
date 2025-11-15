@@ -5,7 +5,7 @@
     "cutoff_id": 1,
     "java_version": "10.99",
     "columns": {
-        "program_id": "program_id",
+        "program_id": "ref_id",
         "cutoff_id": "cutoff_id",
         "java_version": "java_version",
         "file_path": "file_path",

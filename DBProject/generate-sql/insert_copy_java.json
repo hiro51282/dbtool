@@ -5,7 +5,7 @@
     "cutoff_id": 1,
     "java_version": "IR2",
     "columns": {
-        "copy_id": "program_id",
+        "copy_id": "ref_id",
         "cutoff_id": "cutoff_id",
         "java_version": "java_version",
         "file_path": "file_path",
