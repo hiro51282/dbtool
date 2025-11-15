@@ -18,21 +18,26 @@ param (
     # [Parameter(Mandatory = $true)]
     # [string]$outputFile
 )
-# コピー句 COBOL
-$jsonFile = 'DBProject\generate-sql\insert_copy_cobol.json'
-$outputFile = 'DBProject\insert-sql\20251112_copy_cobol.sql'
+# # コピー句 COBOL
+# $jsonFile = 'DBProject\generate-sql\insert_copy_cobol.json'
+# $outputFile = 'DBProject\insert-sql\20251112_copy_cobol.sql'
 
-# 処理部 COBOL
-$jsonFile = 'DBProject\generate-sql\insert_program_cobol.json'
-$outputFile = 'DBProject\insert-sql\20251112_program_cobol.sql'
+# # 処理部 COBOL
+# $jsonFile = 'DBProject\generate-sql\insert_program_cobol.json'
+# $outputFile = 'DBProject\insert-sql\20251112_program_cobol.sql'
 
-# コピー句 Java（コピー句 COBOL登録後でないと実行できない）
-$jsonFile = 'DBProject\generate-sql\insert_copy_java.json'
-$outputFile = 'DBProject\insert-sql\20251112_copy_java.sql'
+# # コピー句 Java（コピー句 COBOL登録後でないと実行できない）
+# $jsonFile = 'DBProject\generate-sql\insert_copy_java.json'
+# $outputFile = 'DBProject\insert-sql\20251112_copy_java.sql'
 
-#処理部 Java（処理部 COBOL登録後でないと実行できない）
-$jsonFile = 'DBProject\generate-sql\insert_program_java.json'
-$outputFile = 'DBProject\insert-sql\20251112_program_java.sql'
+# #処理部 Java（処理部 COBOL登録後でないと実行できない）
+# $jsonFile = 'DBProject\generate-sql\insert_program_java.json'
+# $outputFile = 'DBProject\insert-sql\20251112_program_java.sql'
+
+#released（結合リリースリポジトリ）
+$jsonFile = 'DBProject\generate-sql\insert_released.json'
+$outputFile = 'DBProject\insert-sql\20251112_released.sql'
+
 
 # 設定読み込み
 if (!(Test-Path $jsonFile)) {
@@ -212,7 +217,7 @@ $changeNameMap = Get-ChangeNameMap $cobolIdMap $renameMap
 # ==========================================
 $insertLines = @()
 
-foreach ($file in Get-ChildItem $inputDir -Recurse) {
+foreach ($file in Get-ChildItem $inputDir -Recurse -File) {
     $hash = (Get-FileHash $file.FullName -Algorithm SHA256).Hash.ToLower()
     $name = [System.IO.Path]::GetFileNameWithoutExtension($file.Name)
     $path = $file.FullName.Replace("\", "/")

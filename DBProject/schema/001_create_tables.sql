@@ -178,5 +178,24 @@ CREATE TABLE change_name_program (
 );
 
 -- =========================================================
+-- released（結合リリース資産）
+-- =========================================================
+DROP TABLE IF EXISTS released;
+CREATE TABLE released (
+    id               INT AUTO_INCREMENT PRIMARY KEY,
+    cutoff_id        INT NOT NULL,
+    release_version  VARCHAR(64) NOT NULL,
+    branch           VARCHAR(64) NOT NULL,
+    file_path        VARCHAR(512) NOT NULL,
+    hash             CHAR(64) NOT NULL,
+    java_name        VARCHAR(255) NOT NULL,
+    created_at       DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    INDEX idx_released_cutoff (cutoff_id),
+    CONSTRAINT fk_released_cutoff
+        FOREIGN KEY (cutoff_id) REFERENCES cutoff(id)
+) ENGINE=InnoDB;
+
+-- =========================================================
 -- END OF FILE
 -- =========================================================
